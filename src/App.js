@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+import BeerCard from './BeerCard';
 
 class App extends Component {
   constructor() {
@@ -27,7 +28,7 @@ class App extends Component {
         <header className="App-header">
           <ol>{this.state.arrayOfBeer.map((beer, index) => {
             return (
-              <li key={index}>{beer.name}</li>
+              <BeerCard key={index} name={beer.name} image_url={beer.image_url} />
             )
           })}</ol>
         </header>
