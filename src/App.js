@@ -8,10 +8,23 @@ class App extends Component {
     super()
 
     this.state = {
-      arrayOfBeer: []
+      isClicked: false,
+      arrayOfBeer: [],
+      likedBeer: []
     }
 
   }
+
+  onClickHandler = () => {
+    this.setState({
+      ...this.state,
+      isClicked: !this.state.isClicked
+    })
+  }
+
+  // onLikeHandler = (index) => {
+
+  // }
 
   componentDidMount () {
      axios.get('https://api.punkapi.com/v2/beers')
@@ -28,8 +41,9 @@ class App extends Component {
         <header className="App-header">
           <ol>{this.state.arrayOfBeer.map((beer, index) => {
             return (
-              <BeerCard key={index} name={beer.name} tagline={beer.tagline} first_brewed={beer.first_brewed}
-               description={beer.description} image_url={beer.image_url} abv={beer.abv} />
+              <div><BeerCard key={index} name={beer.name} tagline={beer.tagline} first_brewed={beer.first_brewed}
+               description={beer.description} image_url={beer.image_url} abv={beer.abv}  />
+              <button onClick={this.onClickHandler}>{this.state.isClicked ? 'Like' : 'Unlike'}</button><br /><br /></div>
             )
           })}</ol>
         </header>
